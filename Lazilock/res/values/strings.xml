@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lazilock</string>
+    <string name="title">Lazilock</string>
+    <string name="service_name">Lazilock Service</string>
+    <string name="LazilockDeviceAdminDescription">Allows FlipLock to turn off your screen when appropriate triggers occurs.</string>
+    <string name="introduction">You pocket it, we lock it.</string>
+    <string name="admin_permission_explanation">Give Lazilock access to your lock.</string>
+    <string name="service_enabled_message">Granted permission to Lazilock</string>
+    <string name="service_disabled_message">Lazilock not enabled</string>
+    <string name="uninstall_instructions">Device Admin disabled, you may now uninstall this app as per normal.</string>
+	<string name="device_unsupported_message">Your device is unsupported. Thanks for your interest though.</string>
+	<string name="about_text">Step 0. Don\'t press lock button. &#10;Step 1. Put phone in pocket.
+	    &#10;Step 2. Know that it\'s locked.
+	    &#10;Step 3. Smile.</string>
+	<string name="about_title">About Lazilock</string>
+</resources>
