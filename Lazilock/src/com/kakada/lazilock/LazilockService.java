@@ -1,11 +1,13 @@
-package com.usapia.lazilock;
+package com.kakada.lazilock;
+
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.util.Log;
-import android.widget.Toast;
 
 
 public class LazilockService extends Service{
@@ -28,8 +30,11 @@ public class LazilockService extends Service{
 		
 		IntentFilter filter = new IntentFilter (Intent.ACTION_SCREEN_ON);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
-		screenReceiver.screenOnAction(this);
 		registerReceiver(screenReceiver, filter);
+		
+		Vibrator myVibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+		screenReceiver.registerVibrator(myVibrator);
+		screenReceiver.screenOnAction(this);
 	}
 
 	@Override
@@ -37,7 +42,6 @@ public class LazilockService extends Service{
 		// TODO Auto-generated method stub
 		screenReceiver.screenOffAction(this);
 		unregisterReceiver(screenReceiver);
-		Toast.makeText(this, getString(R.string.service_disabled_message), Toast.LENGTH_SHORT);
 		Log.d(TAG, "service destroyed");
 		super.onDestroy();
 

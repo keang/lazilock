@@ -8,11 +8,18 @@
     <string name="introduction">You pocket it, we lock it.</string>
     <string name="admin_permission_explanation">Give Lazilock access to your lock.</string>
     <string name="service_enabled_message">Granted permission to Lazilock</string>
-    <string name="service_disabled_message">Lazilock not enabled</string>
+    <string name="service_started_message">You have turned Lazilock on</string>
+    <string name="service_stoped_message">You have turned Lazilock off</string>
     <string name="uninstall_instructions">Device Admin disabled, you may now uninstall this app as per normal.</string>
+  
 	<string name="device_unsupported_message">Your device is unsupported. Thanks for your interest though.</string>
-	<string name="about_text">Step 0. Don\'t press lock button. &#10;Step 1. Put phone in pocket.
-	    &#10;Step 2. Know that it\'s locked.
-	    &#10;Step 3. Smile.</string>
-	<string name="about_title">About Lazilock</string>
-</resources>
+	<string name="about_text">
+	    Step 0. Don\'t press lock button.  
+	    \n\nStep 1. Put phone in pocket.
+	    \n\nStep 2. Know that it\'s locked and smile =).
+	    \n\nStep 3. Show off to the next person you meet.</string>
+	<string-array name="camera_process_names">
+		<item >com.sec.android.app.camera</item>
+		<item >com.instagram.android</item>
+	</string-array>
+</resources> 

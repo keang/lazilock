@@ -5,9 +5,12 @@
  * should not be modified by hand.
  */
 
-package com.usapia.lazilock;
+package com.kakada.lazilock;
 
 public final class R {
+    public static final class array {
+        public static final int camera_process_names=0x7f060000;
+    }
     public static final class attr {
     }
     public static final class drawable {
@@ -24,14 +27,14 @@ public final class R {
         public static final int button_uninstall_normal=0x7f02000a;
         public static final int button_uninstall_pressed=0x7f02000b;
         public static final int lazilock=0x7f02000c;
+        public static final int main_background_selector=0x7f02000d;
     }
     public static final class id {
-        public static final int about=0x7f070004;
-        public static final int about_content=0x7f070000;
-        public static final int intro=0x7f070002;
-        public static final int title=0x7f070001;
-        public static final int toggleButton=0x7f070003;
-        public static final int uninstall=0x7f070005;
+        public static final int about=0x7f080000;
+        public static final int intro=0x7f080002;
+        public static final int title=0x7f080001;
+        public static final int toggleButton=0x7f080003;
+        public static final int uninstall=0x7f080004;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -39,25 +42,25 @@ public final class R {
     }
     public static final class string {
         public static final int LazilockDeviceAdminDescription=0x7f050003;
-        public static final int about_text=0x7f05000a;
-        public static final int about_title=0x7f05000b;
+        public static final int about_text=0x7f05000b;
         public static final int admin_permission_explanation=0x7f050005;
         public static final int app_name=0x7f050000;
-        public static final int device_unsupported_message=0x7f050009;
+        public static final int device_unsupported_message=0x7f05000a;
         public static final int introduction=0x7f050004;
-        public static final int service_disabled_message=0x7f050007;
         public static final int service_enabled_message=0x7f050006;
         public static final int service_name=0x7f050002;
+        public static final int service_started_message=0x7f050007;
+        public static final int service_stoped_message=0x7f050008;
         public static final int title=0x7f050001;
-        public static final int uninstall_instructions=0x7f050008;
+        public static final int uninstall_instructions=0x7f050009;
     }
     public static final class style {
-        public static final int Widget_Button_Toggle=0x7f060000;
+        public static final int Widget_Button_Toggle=0x7f070000;
         /**  Perhaps more theme items here...? 
          */
-        public static final int fakeSwitchTheme=0x7f060001;
+        public static final int fakeSwitchTheme=0x7f070001;
     }
     public static final class xml {
-        public static final int fliplock_device_admin=0x7f040000;
+        public static final int lazilock_device_admin=0x7f040000;
     }
 }

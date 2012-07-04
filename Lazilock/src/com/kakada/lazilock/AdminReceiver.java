@@ -1,4 +1,4 @@
-package com.usapia.lazilock;
+package com.kakada.lazilock;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;

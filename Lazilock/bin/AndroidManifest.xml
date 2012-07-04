@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kakada.lazilock"
+    android:versionCode="1"
+    android:versionName="0.2" >
+
+    <uses-sdk android:targetSdkVersion="10"
+    	android:minSdkVersion="8" />
+
+    <application
+        android:icon="@drawable/lazilock"
+        android:label="@string/app_name" >
+        <activity 
+            android:name="com.kakada.lazilock.LazilockActivity"
+            android:theme="@android:style/Theme.Dialog"/>
+        
+            
+        <activity
+            android:name="com.kakada.lazilock.LazilockActivity"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <service android:name="com.kakada.lazilock.LazilockService"/>
+        
+        <receiver android:name=".AdminReceiver"
+            android:label="@string/service_name"
+        	android:description="@string/LazilockDeviceAdminDescription"
+        	android:permission="android.permission.BIND_DEVICE_ADMIN">
+    		<meta-data android:name="android.app.device_admin"
+            	android:resource="@xml/lazilock_device_admin" />
+    		<intent-filter>
+        		<action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+    		</intent-filter>
+		</receiver>
+    </application>
+
+</manifest>

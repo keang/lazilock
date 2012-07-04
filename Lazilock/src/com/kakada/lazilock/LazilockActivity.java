@@ -1,4 +1,6 @@
-package com.usapia.lazilock;
+package com.kakada.lazilock;
+
+import com.kakada.lazilock.R;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -24,8 +26,9 @@ public class LazilockActivity extends Activity implements OnClickListener {
 	private static final String TAG = LazilockActivity.class.getSimpleName();
 	DevicePolicyManager mDPM;
 	ComponentName mAdminName;
-	ToggleButton toggle;
+	ToggleButton toggle; 
 	Button button_uninstall;
+	Button button_about;
 
 	/** Called when the activity is first created. */
 
@@ -54,6 +57,9 @@ public class LazilockActivity extends Activity implements OnClickListener {
 
 		button_uninstall = (Button)findViewById(R.id.uninstall);
 		button_uninstall.setOnClickListener(this);
+		
+		button_about = (Button)findViewById(R.id.about);
+		button_about.setOnClickListener(this);
 	}
 
 	@Override
@@ -78,6 +84,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
+
 		super.onStop();
 	}
 
@@ -93,13 +100,17 @@ public class LazilockActivity extends Activity implements OnClickListener {
 				startService(new Intent(this, LazilockService.class));
 			} else {
 				Log.i(TAG, "Admin enable FAILED!");
-				Toast.makeText(this,
-						getString(R.string.service_disabled_message),
-						Toast.LENGTH_LONG).show();
 				toggle.setChecked(false);
 			}
 			return;
 		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		Log.i("Activity", "Destroyed");
+		super.onDestroy();
 	}
 
 	public void onClick(View view) {
@@ -125,7 +136,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 				//			getString(R.string.service_enabled_message),
 				//			Toast.LENGTH_SHORT).show();
 					startService(new Intent(this, LazilockService.class)); // is
-																			// already
+				Toast.makeText(this, getString(R.string.service_started_message), Toast.LENGTH_SHORT);						// already
 																			// admin!
 				}
 			} else { // toggle disabled, stop service now AND remove admin
@@ -133,8 +144,15 @@ public class LazilockActivity extends Activity implements OnClickListener {
 				//		getString(R.string.service_disabled_message),
 				//		Toast.LENGTH_SHORT).show();
 				stopService(new Intent(this, LazilockService.class));
+				Toast.makeText(this, getString(R.string.service_stoped_message), Toast.LENGTH_SHORT).show();
 			}
 			
+			break;
+			
+		//about button
+		case R.id.about:
+			Intent i = new Intent(this, AboutActivity.class);
+			startActivity(i);
 			break;
 			
 			
@@ -146,10 +164,6 @@ public class LazilockActivity extends Activity implements OnClickListener {
 			status.setChecked(false);
 			Log.i(TAG,"Admin removed");
 			Toast.makeText(this, getString(R.string.uninstall_instructions), Toast.LENGTH_LONG).show();
-			
-		case R.id.about:
-			Intent aboutIntent = new Intent(this, aboutActivity.class);
-			startActivity(aboutIntent);
 		}
 
 	}
