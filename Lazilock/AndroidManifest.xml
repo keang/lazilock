@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kakada.lazilock"
-    android:versionCode="2"
-    android:versionName="1.0.1" >
+    android:versionCode="3"
+    android:versionName="1.0.2" >
     
     <uses-permission android:name="android.permission.VIBRATE"/>
     
@@ -21,6 +21,9 @@
         android:icon="@drawable/lazilock"
         android:label="@string/app_name" >
         
+        <activity 
+            android:name="com.kakada.lazilock.GreenListActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
         <activity
             android:name="com.kakada.lazilock.AboutActivity"></activity>
         

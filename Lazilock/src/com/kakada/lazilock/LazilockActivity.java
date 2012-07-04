@@ -29,6 +29,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 	ToggleButton toggle; 
 	Button button_uninstall;
 	Button button_about;
+	Button button_greenlist;
 
 	/** Called when the activity is first created. */
 
@@ -55,11 +56,20 @@ public class LazilockActivity extends Activity implements OnClickListener {
 		toggle.setChecked(isMyServiceRunning());
 		toggle.setOnClickListener(this);
 
-		button_uninstall = (Button)findViewById(R.id.uninstall);
+		button_uninstall = (Button)findViewById(R.id.btn_uninstall);
 		button_uninstall.setOnClickListener(this);
+		button_uninstall.setText(R.string.btn_uninstall);
+		button_uninstall.setTypeface(intro_font);
 		
-		button_about = (Button)findViewById(R.id.about);
+		button_about = (Button)findViewById(R.id.btn_about);
 		button_about.setOnClickListener(this);
+		button_about.setText(R.string.btn_about);
+		button_about.setTypeface(intro_font);
+		
+		button_greenlist = (Button)findViewById(R.id.btn_greenlist);
+		button_greenlist.setOnClickListener(this);
+		button_greenlist.setText(R.string.btn_greenlist);
+		button_greenlist.setTypeface(intro_font);
 	}
 
 	@Override
@@ -150,14 +160,19 @@ public class LazilockActivity extends Activity implements OnClickListener {
 			break;
 			
 		//about button
-		case R.id.about:
+		case R.id.btn_about:
 			Intent i = new Intent(this, AboutActivity.class);
 			startActivity(i);
+			break;
+		
+		//greenlist button
+		case R.id.btn_greenlist:
+			startActivity(new Intent(this, GreenListActivity.class));
 			break;
 			
 			
 		//uninstall button
-		case R.id.uninstall:
+		case R.id.btn_uninstall:
 			mDPM.removeActiveAdmin(mAdminName);
 			stopService(new Intent(this, LazilockService.class));
 			ToggleButton status = (ToggleButton)findViewById(R.id.toggleButton);
