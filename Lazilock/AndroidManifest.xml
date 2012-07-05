@@ -25,7 +25,9 @@
             android:name="com.kakada.lazilock.GreenListActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
         <activity
-            android:name="com.kakada.lazilock.AboutActivity"></activity>
+            android:name="com.kakada.lazilock.ScreenWakerActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:windowIsTranslucent = "true"></activity>
         
         <activity
             android:name="com.kakada.lazilock.AboutActivity"

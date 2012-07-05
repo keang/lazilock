@@ -21,9 +21,14 @@ public class LazilockService extends Service implements SensorEventListener{
 	private static final String PREFS_NAME="MyPrefsFile";
 	
 	private static final String TAG = LazilockService.class.getSimpleName();
+
+	private static final int MINFORCE = 8;
+
+	private static final int MINCOUNT = 4;
 	
 	ScreenReceiver screenReceiver;
-
+	ShakeEventListener mShakeListener;
+	SensorManager sManager ;
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -36,6 +41,15 @@ public class LazilockService extends Service implements SensorEventListener{
 		// TODO Auto-generated method stub
 		super.onCreate();
 		Log.d(TAG, "service started");
+		sManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+		mShakeListener = new ShakeEventListener(MINFORCE, MINCOUNT, this){
+			@Override
+			public void onShake(){
+				Intent wakeIntent = new Intent(getApplicationContext(), ScreenWakerActivity.class);
+				wakeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				getApplicationContext().startActivity(wakeIntent);
+			}
+		};
 		
 		screenReceiver = new ScreenReceiver(){
 			
@@ -43,8 +57,8 @@ public class LazilockService extends Service implements SensorEventListener{
 			public void screenOnAction(Context context){
 				Log.i(TAG, "SCREEN IS ON, REGISTER SENSOR NOW");
 				//register proxim sensor:
-				SensorManager sManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-				sManager.registerListener((SensorEventListener) context, sManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
+				sManager.registerListener((SensorEventListener) context, sManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), 1000000);
+				sManager.unregisterListener(mShakeListener);
 			}
 			
 			@Override
@@ -52,7 +66,10 @@ public class LazilockService extends Service implements SensorEventListener{
 
 				//Log.i(TAG, "xxxSCREEN IS OFF, UNREGISTER SENSORxxx");
 				//if(greenListIsActive());
-				((SensorManager)getSystemService(Context.SENSOR_SERVICE)).unregisterListener((SensorEventListener)context);
+				sManager.unregisterListener((SensorEventListener)context);
+				sManager.registerListener(mShakeListener, sManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION), SensorManager.SENSOR_DELAY_NORMAL);
+				
+				
 			}
 		}; 
 		
@@ -70,6 +87,9 @@ public class LazilockService extends Service implements SensorEventListener{
 		// TODO Auto-generated method stub
 		screenReceiver.screenOffAction(this);
 		unregisterReceiver(screenReceiver);
+		sManager.unregisterListener(mShakeListener);
+		sManager.unregisterListener(this);
+		
 		//Log.d(TAG, "service destroyed");
 		super.onDestroy();
 

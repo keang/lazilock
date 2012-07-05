@@ -48,11 +48,11 @@ public class ShakeEventListener implements SensorEventListener{
 		float diffYSqr = (y-lastY)*(y-lastY);
 		float diffZSqr = (z-lastZ)*(z-lastZ);
 		
-		
+		Log.e("values", Float.toString(z));
 		float totalMovement= (float) (Math.sqrt(diffXSqr+diffYSqr+diffZSqr));
 		//Log.d("ShakeEventListener", Float.toString(totalMovement));
 		if(totalMovement>minForce){
-			Log.d("new A, old A", Double.toString(Math.sqrt((double)(x*x+y*y+z*z)) - Math.sqrt((double)(lastX*lastX-lastY*lastY-lastZ*lastZ))));
+			//Log.d("new A, old A", Double.toString(Math.sqrt((double)(x*x+y*y+z*z)) - Math.sqrt((double)(lastX*lastX-lastY*lastY-lastZ*lastZ))));
 			long now = System.currentTimeMillis();
 			
 			//initialize movement time record
@@ -78,8 +78,10 @@ public class ShakeEventListener implements SensorEventListener{
 				Log.d("DIR change count that exceeds min", Integer.toString(mDirectionChangeCount));
 				//shake almost registers!
 				long totalDurationChange = now - mFirstDirectionChangeTime;
+				Log.d("shaking", Long.toString(totalDurationChange));
 				if(totalDurationChange< MAX_TOTAL_DURATION_OF_CHANGE){
 					//shake finally registers!
+					Log.d("shaking", "YAY");
 					onShake();
 					resetParameter();
 				}
