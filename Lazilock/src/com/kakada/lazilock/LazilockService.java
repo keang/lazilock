@@ -10,25 +10,27 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.os.Vibrator;
 import android.util.Log;
 
 
-public class LazilockService extends Service implements SensorEventListener{
+public class LazilockService extends Service{
 	private static final String PREFS_NAME="MyPrefsFile";
 	
 	private static final String TAG = LazilockService.class.getSimpleName();
 
-	private static final int MINFORCE = 8;
+	private static final double MINFORCE = 3;
 
-	private static final int MINCOUNT = 4;
+	private static final int MINCOUNT = 2;
 	
 	ScreenReceiver screenReceiver;
-	ShakeEventListener mShakeListener;
+	ShakeEventListener mScreenOffShakeListener;
+	ShakeEventListener mScreenOnShakeListener;
 	SensorManager sManager ;
+	PowerManager powermanager;
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -41,24 +43,37 @@ public class LazilockService extends Service implements SensorEventListener{
 		// TODO Auto-generated method stub
 		super.onCreate();
 		Log.d(TAG, "service started");
-		sManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-		mShakeListener = new ShakeEventListener(MINFORCE, MINCOUNT, this){
+		
+		
+		powermanager = (PowerManager) this.getSystemService(Context.POWER_SERVICE); 
+		
+		
+		mScreenOffShakeListener = new ShakeEventListener(MINFORCE, MINCOUNT, this){
 			@Override
 			public void onShake(){
-				Intent wakeIntent = new Intent(getApplicationContext(), ScreenWakerActivity.class);
-				wakeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				getApplicationContext().startActivity(wakeIntent);
+				((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200);
+				
+				if (powermanager.isScreenOn()&&!greenListIsActive()){
+					((DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE)).lockNow();
+				}
+				else {
+					Intent wakeIntent = new Intent(getApplicationContext(), ScreenWakerActivity.class);
+					wakeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					getApplicationContext().startActivity(wakeIntent);
+				}				
 			}
 		};
 		
-		screenReceiver = new ScreenReceiver(){
+		sManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+		sManager.registerListener(mScreenOffShakeListener, sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),90000);
+		/*screenReceiver = new ScreenReceiver(){
 			
 			@Override
 			public void screenOnAction(Context context){
 				Log.i(TAG, "SCREEN IS ON, REGISTER SENSOR NOW");
 				//register proxim sensor:
-				sManager.registerListener((SensorEventListener) context, sManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), 1000000);
-				sManager.unregisterListener(mShakeListener);
+				mScreenOffShakeListener.onShake();
+				
 			}
 			
 			@Override
@@ -66,18 +81,13 @@ public class LazilockService extends Service implements SensorEventListener{
 
 				//Log.i(TAG, "xxxSCREEN IS OFF, UNREGISTER SENSORxxx");
 				//if(greenListIsActive());
-				sManager.unregisterListener((SensorEventListener)context);
-				sManager.registerListener(mShakeListener, sManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION), SensorManager.SENSOR_DELAY_NORMAL);
-				
+				mScreenOffShakeListener.offShake();
 				
 			}
-		}; 
-		
-		screenReceiver.screenOnAction(this);
-		
+		}; 		
 		IntentFilter filter = new IntentFilter (Intent.ACTION_SCREEN_ON);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
-		registerReceiver(screenReceiver, filter);
+		registerReceiver(screenReceiver, filter);*/
 
 
 	}
@@ -85,11 +95,8 @@ public class LazilockService extends Service implements SensorEventListener{
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
-		screenReceiver.screenOffAction(this);
 		unregisterReceiver(screenReceiver);
-		sManager.unregisterListener(mShakeListener);
-		sManager.unregisterListener(this);
-		
+		sManager.unregisterListener(mScreenOffShakeListener);
 		//Log.d(TAG, "service destroyed");
 		super.onDestroy();
 
@@ -116,11 +123,7 @@ public class LazilockService extends Service implements SensorEventListener{
 
 	public void onSensorChanged(SensorEvent arg0) {
 		// TODO Auto-generated method stub
-		if(!greenListIsActive()){
-			((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(400);
-			((DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE)).lockNow();		
-			//Log.d(TAG, "LOCK PHONE");
-		}
+		
 	}
 
 }

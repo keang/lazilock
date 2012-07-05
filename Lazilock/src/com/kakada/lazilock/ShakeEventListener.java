@@ -11,9 +11,9 @@ import android.view.WindowManager;
 
 public class ShakeEventListener implements SensorEventListener{
 	private static final int MAX_PAUSE_BETWEEN_DIRECTION_CHANGE=200;
-	private static final int MAX_TOTAL_DURATION_OF_CHANGE = 1000;
+	private static final int MAX_TOTAL_DURATION_OF_CHANGE = 900;
 	
-	private int minForce;
+	private double minForce;
 	private int minCount;
 
 	
@@ -23,12 +23,13 @@ public class ShakeEventListener implements SensorEventListener{
 	private float lastX=0;
 	private float lastY=0;
 	private float lastZ=0;
+	private float lastAcc = 9.8f;
 	
 	private Context context;
 	
 	
-	public ShakeEventListener (int minforce, int mincount, Context c){
-		minForce=minforce;
+	public ShakeEventListener (double minforce2, int mincount, Context c){
+		minForce=minforce2;
 		minCount=mincount;
 		context = c;
 	}
@@ -44,17 +45,15 @@ public class ShakeEventListener implements SensorEventListener{
 		float z= se.values[2];
 		
 		//calculate movement: 
-		float diffXSqr = (x-lastX)*(x-lastX);
-		float diffYSqr = (y-lastY)*(y-lastY);
-		float diffZSqr = (z-lastZ)*(z-lastZ);
+		float thisAcc = (float) (Math.sqrt(x*x+y*y+z*z));
+		float totalMovement=  Math.abs(thisAcc - lastAcc);
+
 		
-		Log.e("values", Float.toString(z));
-		float totalMovement= (float) (Math.sqrt(diffXSqr+diffYSqr+diffZSqr));
 		//Log.d("ShakeEventListener", Float.toString(totalMovement));
-		if(totalMovement>minForce){
+		if(y>0&&z>0&& totalMovement>minForce){
 			//Log.d("new A, old A", Double.toString(Math.sqrt((double)(x*x+y*y+z*z)) - Math.sqrt((double)(lastX*lastX-lastY*lastY-lastZ*lastZ))));
 			long now = System.currentTimeMillis();
-			
+			Log.d("acc raw", Float.toString(totalMovement));
 			//initialize movement time record
 			if(mFirstDirectionChangeTime == 0){
 				mFirstDirectionChangeTime = now;
@@ -64,13 +63,15 @@ public class ShakeEventListener implements SensorEventListener{
 			//check if movement was not long ago
 			long lastChangeWasAgo = now - mLastDirectionChangeTime;
 			if(lastChangeWasAgo<MAX_PAUSE_BETWEEN_DIRECTION_CHANGE){
-				//Log.d("lastChangeWasAgo to register one change", Long.toString(lastChangeWasAgo));
+				Log.d("lastChangeWasAgo to register one change", Long.toString(lastChangeWasAgo));
 				//one direction change passes
 				mDirectionChangeCount++;
+				Log.d("count", Integer.toString(mDirectionChangeCount));
 				mLastDirectionChangeTime = now;
 				lastX = x;
 				lastY = y;
 				lastZ = z;
+				lastAcc = thisAcc;
 			}
 			
 			//check how many direction change so far
@@ -98,12 +99,18 @@ public class ShakeEventListener implements SensorEventListener{
 		lastX = 0;
 		lastY = 0;
 		lastZ = 0;
+		lastAcc = 9.8f;
 		
 	}
 	
 	public void onShake(){
 		Log.i("ShakeEventListener", "wake phone here!");
 		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);  
+	}
+
+	public void offShake() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
