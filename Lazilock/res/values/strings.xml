@@ -29,4 +29,5 @@
 	<string name="btn_done">Done</string>
 	<string name="btn_cancel">Cancel</string>
 	<string name="green_list_title">Apps that Lazilock shouldn\'t interupt:</string>
+	<string name="loading_green_list">Loading installed apps...</string>
 </resources> 

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:text="@string/green_list_title"></TextView>
 <ScrollView 
     android:id="@+id/green_list_scroll_view"
@@ -29,21 +29,23 @@
 </LinearLayout>
 </ScrollView>
 <LinearLayout android:layout_width="fill_parent"
-    android:layout_height="30dp"
+    android:layout_height="55dp"
     android:gravity="center_horizontal">
     <Button
         android:id="@+id/done"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:background="@drawable/btn_holo"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:background="@drawable/btn_default_holo_dark"
         android:text="@string/btn_done"
         android:layout_marginRight="20dp"
         android:textColor="#FFFFFF" />
     <Button
         android:id="@+id/cancel"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:background="@drawable/btn_holo"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:background="@drawable/btn_default_holo_dark"
         android:text="@string/btn_cancel"
         android:textColor="#FFFFFF" />
 </LinearLayout>

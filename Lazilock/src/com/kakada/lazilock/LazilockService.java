@@ -50,7 +50,7 @@ public class LazilockService extends Service implements SensorEventListener{
 			@Override
 			public void screenOffAction(Context context){
 
-				Log.i(TAG, "xxxSCREEN IS OFF, UNREGISTER SENSORxxx");
+				//Log.i(TAG, "xxxSCREEN IS OFF, UNREGISTER SENSORxxx");
 				//if(greenListIsActive());
 				((SensorManager)getSystemService(Context.SENSOR_SERVICE)).unregisterListener((SensorEventListener)context);
 			}
@@ -70,7 +70,7 @@ public class LazilockService extends Service implements SensorEventListener{
 		// TODO Auto-generated method stub
 		screenReceiver.screenOffAction(this);
 		unregisterReceiver(screenReceiver);
-		Log.d(TAG, "service destroyed");
+		//Log.d(TAG, "service destroyed");
 		super.onDestroy();
 
 	}
@@ -80,10 +80,10 @@ public class LazilockService extends Service implements SensorEventListener{
 		for(ActivityManager.RunningAppProcessInfo runningApp : ((ActivityManager)getSystemService(ACTIVITY_SERVICE)).getRunningAppProcesses()){
 			
 			if(runningApp.importance==ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND){
-				Log.i("FOREGROUND ACTIVITY", runningApp.processName);
+				//Log.i("FOREGROUND ACTIVITY", runningApp.processName);
 				if(preferences.getBoolean(runningApp.processName, false))
 					return true;
-				else Log.i("foreground but not ticked", runningApp.processName);
+				//else Log.i("foreground but not ticked", runningApp.processName);
 			}
 		}
 		return false;
@@ -99,7 +99,7 @@ public class LazilockService extends Service implements SensorEventListener{
 		if(!greenListIsActive()){
 			((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(400);
 			((DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE)).lockNow();		
-			Log.d(TAG, "LOCK PHONE");
+			//Log.d(TAG, "LOCK PHONE");
 		}
 	}
 

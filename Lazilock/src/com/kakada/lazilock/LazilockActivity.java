@@ -167,6 +167,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 		
 		//greenlist button
 		case R.id.btn_greenlist:
+			Toast.makeText(this, getString(R.string.loading_green_list), Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(this, GreenListActivity.class));
 			break;
 			

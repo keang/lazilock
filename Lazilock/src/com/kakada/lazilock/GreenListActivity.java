@@ -22,6 +22,7 @@ import android.widget.TextView;
 public class GreenListActivity extends Activity implements OnClickListener{
 	private String PREFS_NAME = "MyPrefsFile";
 	private List<PInfo> installedPackages;
+	SharedPreferences preferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -32,7 +33,7 @@ public class GreenListActivity extends Activity implements OnClickListener{
 		TextView listTitle = (TextView)findViewById(R.id.green_list_title);
 		Typeface robo_font = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 		listTitle.setTypeface(robo_font);
-		SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+		preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 		
 		LinearLayout mLinearLayout = (LinearLayout)findViewById(R.id.green_list_scroll);
 		
@@ -46,9 +47,11 @@ public class GreenListActivity extends Activity implements OnClickListener{
 			icon.setBounds(0,0,60,60);
 			mCheckBox.setCompoundDrawables(icon, null, null, null);
 			
+			Log.d("populating", Boolean.toString(preferences.getBoolean(installedPackages.get(i).appname, false)));
+			
 			//set checked:
-			if(preferences.getBoolean(installedPackages.get(i).appname, false)){
-				installedPackages.get(i).isChecked=preferences.getBoolean(installedPackages.get(i).appname, false);
+			if(preferences.getBoolean(installedPackages.get(i).pname, false)){
+				installedPackages.get(i).isChecked=preferences.getBoolean(installedPackages.get(i).pname, false);
 			}
 			mCheckBox.setChecked(installedPackages.get(i).isChecked);
 			mCheckBox.setId(i);
@@ -99,9 +102,6 @@ public class GreenListActivity extends Activity implements OnClickListener{
 				return a.appname.compareToIgnoreCase(b.appname);
 			}
 	    });
-	    for(int i=0;i<apps.size();i++) {
-	    	Log.i("After compare", apps.get(i).appname);
-	    }
 	    return apps;
 	}
 
@@ -113,9 +113,7 @@ public class GreenListActivity extends Activity implements OnClickListener{
 	        if (!getSysPackages) {
 	        	
 	        	String appname = p.loadLabel(getPackageManager()).toString();
-	        	
 	        	if(appname.length()>5 && appname.substring(0, 4).equals("com.")){
-	        		Log.i("app cut", appname.substring(0, 4));
 	        		continue ;
 	        	}
 	        		
@@ -140,10 +138,10 @@ public class GreenListActivity extends Activity implements OnClickListener{
 			switch(v.getId()){
 				case R.id.done:
 					Log.i("onclick", "Done clicked");
-					SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-				      SharedPreferences.Editor editor = settings.edit();
+				      SharedPreferences.Editor editor = preferences.edit();
 				      for(PInfo mPackage: installedPackages){
 				    	  editor.putBoolean(mPackage.pname, mPackage.isChecked);
+				    	  Log.i("commiting", mPackage.appname + " "+Boolean.toString(mPackage.isChecked));
 				      }
 				      // Commit the edits!
 				      editor.commit();
@@ -158,14 +156,14 @@ public class GreenListActivity extends Activity implements OnClickListener{
 				for(int i=0; installedPackages.size()>i; i++){
 					if(((CheckBox) v).getId() == installedPackages.get(i).Id){
 						installedPackages.get(i).isChecked=true;
-						Log.i("checkbox", "make True");
+						//Log.i("checkbox", Boolean.toString(installedPackages.get(i).isChecked));
 					}
 				}
 			} else {
 				for(int i=0; installedPackages.size()>i; i++){
 					if(((CheckBox) v).getId() == installedPackages.get(i).Id){
 						installedPackages.get(i).isChecked=false;
-						Log.i("checkbox", "make False");
+						//Log.i("checkbox", "make False");
 					}
 				}
 			}
