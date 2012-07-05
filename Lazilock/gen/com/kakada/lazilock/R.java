@@ -19,23 +19,24 @@ public final class R {
         public static final int btn_default_holo_dark=0x7f020002;
         public static final int btn_default_normal_holo_dark=0x7f020003;
         public static final int btn_default_pressed_holo_dark=0x7f020004;
-        public static final int btn_holo=0x7f020005;
-        public static final int btn_toggle=0x7f020006;
-        public static final int btn_toggle_bg=0x7f020007;
-        public static final int btn_toggle_off=0x7f020008;
-        public static final int btn_toggle_on=0x7f020009;
-        public static final int btn_uninstall=0x7f02000a;
-        public static final int button_about_focus=0x7f02000b;
-        public static final int button_about_normal=0x7f02000c;
-        public static final int button_about_pressed=0x7f02000d;
-        public static final int button_focused=0x7f02000e;
-        public static final int button_normal=0x7f02000f;
-        public static final int button_pressed=0x7f020010;
-        public static final int button_uninstall_focus=0x7f020011;
-        public static final int button_uninstall_normal=0x7f020012;
-        public static final int button_uninstall_pressed=0x7f020013;
-        public static final int lazilock=0x7f020014;
-        public static final int main_background_selector=0x7f020015;
+        public static final int btn_toggle=0x7f020005;
+        public static final int btn_toggle_bg=0x7f020006;
+        public static final int btn_toggle_off=0x7f020007;
+        public static final int btn_toggle_on=0x7f020008;
+        public static final int btn_uninstall=0x7f020009;
+        public static final int button_about_focus=0x7f02000a;
+        public static final int button_about_normal=0x7f02000b;
+        public static final int button_about_pressed=0x7f02000c;
+        public static final int button_focused=0x7f02000d;
+        public static final int button_normal=0x7f02000e;
+        public static final int button_pressed=0x7f02000f;
+        public static final int button_uninstall_focus=0x7f020010;
+        public static final int button_uninstall_normal=0x7f020011;
+        public static final int button_uninstall_pressed=0x7f020012;
+        public static final int lazilock=0x7f020013;
+        public static final int lazilock_notification_green=0x7f020014;
+        public static final int lazilock_widget_off=0x7f020015;
+        public static final int main_background_selector=0x7f020016;
     }
     public static final class id {
         public static final int about=0x7f080000;
@@ -50,11 +51,15 @@ public final class R {
         public static final int intro=0x7f080007;
         public static final int title=0x7f080006;
         public static final int toggleButton=0x7f080008;
+        public static final int transparent=0x7f08000c;
+        public static final int widget_icon=0x7f08000d;
     }
     public static final class layout {
         public static final int about=0x7f030000;
         public static final int greenlist=0x7f030001;
         public static final int main=0x7f030002;
+        public static final int transparent=0x7f030003;
+        public static final int widget=0x7f030004;
     }
     public static final class string {
         public static final int LazilockDeviceAdminDescription=0x7f050003;
@@ -78,12 +83,14 @@ public final class R {
         public static final int uninstall_instructions=0x7f050009;
     }
     public static final class style {
-        public static final int Widget_Button_Toggle=0x7f070000;
+        public static final int Theme_Transparent=0x7f070000;
+        public static final int Widget_Button_Toggle=0x7f070001;
         /**  Perhaps more theme items here...? 
          */
-        public static final int fakeSwitchTheme=0x7f070001;
+        public static final int fakeSwitchTheme=0x7f070002;
     }
     public static final class xml {
         public static final int lazilock_device_admin=0x7f040000;
+        public static final int widget_provider=0x7f040001;
     }
 }
