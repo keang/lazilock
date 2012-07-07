@@ -10,6 +10,7 @@ package com.kakada.lazilock;
 public final class R {
     public static final class array {
         public static final int camera_process_names=0x7f060000;
+        public static final int sensitivity_array=0x7f060001;
     }
     public static final class attr {
     }
@@ -40,19 +41,23 @@ public final class R {
     }
     public static final class id {
         public static final int about=0x7f080000;
-        public static final int btn_about=0x7f080009;
-        public static final int btn_greenlist=0x7f08000a;
-        public static final int btn_uninstall=0x7f08000b;
+        public static final int btn_about=0x7f08000e;
+        public static final int btn_calibrate=0x7f08000d;
+        public static final int btn_greenlist=0x7f08000c;
+        public static final int btn_uninstall=0x7f08000f;
         public static final int cancel=0x7f080005;
         public static final int done=0x7f080004;
         public static final int green_list_scroll=0x7f080003;
         public static final int green_list_scroll_view=0x7f080002;
         public static final int green_list_title=0x7f080001;
         public static final int intro=0x7f080007;
+        public static final int radio_group=0x7f080009;
+        public static final int radio_strong=0x7f08000b;
+        public static final int radio_weak=0x7f08000a;
         public static final int title=0x7f080006;
         public static final int toggleButton=0x7f080008;
-        public static final int transparent=0x7f08000c;
-        public static final int widget_icon=0x7f08000d;
+        public static final int transparent=0x7f080010;
+        public static final int widget_icon=0x7f080011;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -67,10 +72,12 @@ public final class R {
         public static final int admin_permission_explanation=0x7f050005;
         public static final int app_name=0x7f050000;
         public static final int btn_about=0x7f05000c;
+        public static final int btn_calibrate=0x7f050015;
         public static final int btn_cancel=0x7f050010;
         public static final int btn_done=0x7f05000f;
         public static final int btn_greenlist=0x7f05000e;
         public static final int btn_uninstall=0x7f05000d;
+        public static final int calibrate_finish_message=0x7f050016;
         public static final int device_unsupported_message=0x7f05000a;
         public static final int green_list_title=0x7f050011;
         public static final int introduction=0x7f050004;
@@ -79,8 +86,10 @@ public final class R {
         public static final int service_name=0x7f050002;
         public static final int service_started_message=0x7f050007;
         public static final int service_stoped_message=0x7f050008;
+        public static final int strong=0x7f050014;
         public static final int title=0x7f050001;
         public static final int uninstall_instructions=0x7f050009;
+        public static final int weak=0x7f050013;
     }
     public static final class style {
         public static final int Theme_Transparent=0x7f070000;

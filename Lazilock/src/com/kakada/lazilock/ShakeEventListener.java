@@ -1,36 +1,40 @@
 package com.kakada.lazilock;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
-import android.view.WindowManager;
 
 
 
 public class ShakeEventListener implements SensorEventListener{
 	private static final int MAX_PAUSE_BETWEEN_DIRECTION_CHANGE=200;
 	private static final int MAX_TOTAL_DURATION_OF_CHANGE = 900;
+	private static final String PREFS_NAME="MyPrefsFile";
+	
 	
 	private double minForce;
 	private int minCount;
 
-	
+	private double STILL_ACCELERATION = 0;
 	private long mFirstDirectionChangeTime=0;
 	private long mLastDirectionChangeTime=0;
 	private int mDirectionChangeCount =0;
 	private float lastX=0;
 	private float lastY=0;
 	private float lastZ=0;
-	private float lastAcc = 9.8f;
+	private float lastAcc;
 	
 	private Context context;
 	
 	
-	public ShakeEventListener (double minforce2, int mincount, Context c){
+	public ShakeEventListener (double minforce2, int mincount, double stillAccel, Context c){
 		minForce=minforce2;
 		minCount=mincount;
+		STILL_ACCELERATION = stillAccel;
+		Log.i("ShakeListener creation", "still updated " + Double.toString(STILL_ACCELERATION));
 		context = c;
 	}
 
@@ -50,7 +54,7 @@ public class ShakeEventListener implements SensorEventListener{
 
 		
 		//Log.d("ShakeEventListener", Float.toString(totalMovement));
-		if(y>0&&z>0&& totalMovement>minForce){
+		if( totalMovement>minForce){
 			//Log.d("new A, old A", Double.toString(Math.sqrt((double)(x*x+y*y+z*z)) - Math.sqrt((double)(lastX*lastX-lastY*lastY-lastZ*lastZ))));
 			long now = System.currentTimeMillis();
 			Log.d("acc raw", Float.toString(totalMovement));
@@ -99,7 +103,7 @@ public class ShakeEventListener implements SensorEventListener{
 		lastX = 0;
 		lastY = 0;
 		lastZ = 0;
-		lastAcc = 9.8f;
+		lastAcc = (float) STILL_ACCELERATION;
 		
 	}
 	

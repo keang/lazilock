@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="fill_parent">
+    
+	<LinearLayout 
+	   android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/main_background_selector"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="20dp" 
-    android:background="@drawable/main_background_selector">
+    android:padding="20dp" >
 
     <TextView
         android:id="@+id/title"
@@ -23,38 +27,83 @@
         android:layout_marginBottom="30dp"
         android:text="@string/introduction"
         android:textSize="24sp" />
-
+
     <ToggleButton
         android:id="@+id/toggleButton"
         style="@style/Widget.Button.Toggle"
-        android:layout_width="145dp"
-        android:layout_height="145dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="0dp"
         android:textOff=" "
         android:textOn=" " />
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/btn_about"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:background="@drawable/btn_default_holo_dark" 
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="0dp"
-        android:textSize="18sp"/>
-    <Button
-        android:id="@+id/btn_greenlist"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/btn_default_holo_dark" 
-        android:layout_marginBottom="0dp"
-        android:textSize="18sp"/>
-    <Button
-        android:id="@+id/btn_uninstall"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/btn_default_holo_dark" />
+    <RadioButton android:id="@+id/radio_weak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weak"
+        android:layout_margin="20dp"
+        android:onClick="onRadioButtonClicked"/>
+
+    <RadioButton
+        android:id="@+id/radio_strong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strong" 
+        android:layout_margin="25dp"
+        android:onClick="onRadioButtonClicked"/>
+
+	</RadioGroup>
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_horizontal"
+	    android:orientation="horizontal">
+		<Button
+	        android:id="@+id/btn_greenlist"
+	        android:layout_width="140dp"
+	        android:layout_height="50dp"
+	        android:textColor="#FFFFFF"
+	        android:background="@drawable/btn_default_holo_dark" 
+	        android:layout_marginBottom="0dp"
+	        android:textSize="18sp"/>
+		<Button
+	        android:id="@+id/btn_calibrate"
+	        android:layout_width="140dp"
+	        android:layout_height="50dp"
+	        android:textColor="#FFFFFF"
+	        android:background="@drawable/btn_default_holo_dark" 
+	        android:layout_marginBottom="0dp"
+	        android:textSize="18sp"/>
+	</LinearLayout>
+	<LinearLayout
+	  	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_horizontal"
+	    android:orientation="horizontal">
+	    <Button
+	        android:id="@+id/btn_about"
+	        android:layout_width="140dp"
+	        android:layout_height="50dp"
+	        android:background="@drawable/btn_default_holo_dark" 
+	        android:textColor="#FFFFFF"
+	        android:layout_marginBottom="0dp"
+	        android:textSize="18sp"/>
+	    
+	
+	    <Button
+	        android:id="@+id/btn_uninstall"
+	        android:layout_width="140dp"
+	        android:layout_height="50dp"
+	        android:textSize="18sp"
+	        android:textColor="#FFFFFF"
+	        android:background="@drawable/btn_default_holo_dark" />
+	</LinearLayout>
 
 </LinearLayout>
+</ScrollView>

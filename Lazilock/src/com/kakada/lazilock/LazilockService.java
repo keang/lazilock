@@ -22,7 +22,7 @@ public class LazilockService extends Service{
 	
 	private static final String TAG = LazilockService.class.getSimpleName();
 
-	private static final double MINFORCE = 3;
+	private double MINFORCE;
 
 	private static final int MINCOUNT = 2;
 	
@@ -42,37 +42,36 @@ public class LazilockService extends Service{
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		Log.d(TAG, "service started");
+		SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+		MINFORCE = (double)preferences.getFloat("MinForce", 4.5f);
+		double STILL_ACCELERALTION = (double)preferences.getFloat("StillAcceleration", 9.8f);
+		Log.i("MINFORCE", "UPDATED to " + Double.toString(MINFORCE));
 		
+		Log.d(TAG, "service started");
 		
 		powermanager = (PowerManager) this.getSystemService(Context.POWER_SERVICE); 
 		
 		
-		mScreenOffShakeListener = new ShakeEventListener(MINFORCE, MINCOUNT, this){
+		mScreenOffShakeListener = new ShakeEventListener(MINFORCE, MINCOUNT, STILL_ACCELERALTION, this){
 			@Override
 			public void onShake(){
-				((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200);
+
 				
 				if (powermanager.isScreenOn()&&!greenListIsActive()){
 					((DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE)).lockNow();
-				}
-				else {
-					Intent wakeIntent = new Intent(getApplicationContext(), ScreenWakerActivity.class);
-					wakeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					getApplicationContext().startActivity(wakeIntent);
+					
 				}				
 			}
 		};
 		
 		sManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-		sManager.registerListener(mScreenOffShakeListener, sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),90000);
-		/*screenReceiver = new ScreenReceiver(){
+		sManager.registerListener(mScreenOffShakeListener, sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),70000);
+		screenReceiver = new ScreenReceiver(){
 			
 			@Override
 			public void screenOnAction(Context context){
 				Log.i(TAG, "SCREEN IS ON, REGISTER SENSOR NOW");
-				//register proxim sensor:
-				mScreenOffShakeListener.onShake();
+				sManager.registerListener(mScreenOffShakeListener, sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),70000);
 				
 			}
 			
@@ -81,13 +80,15 @@ public class LazilockService extends Service{
 
 				//Log.i(TAG, "xxxSCREEN IS OFF, UNREGISTER SENSORxxx");
 				//if(greenListIsActive());
-				mScreenOffShakeListener.offShake();
+				((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200);
+				sManager.unregisterListener(mScreenOffShakeListener);
 				
 			}
 		}; 		
 		IntentFilter filter = new IntentFilter (Intent.ACTION_SCREEN_ON);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
-		registerReceiver(screenReceiver, filter);*/
+		registerReceiver(screenReceiver, filter);
+		
 
 
 	}
@@ -114,16 +115,6 @@ public class LazilockService extends Service{
 			}
 		}
 		return false;
-	}
-
-	public void onAccuracyChanged(Sensor arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void onSensorChanged(SensorEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -23,6 +23,14 @@
 		<item >com.sec.android.app.camera</item>
 		<item >com.instagram.android</item>
 	</string-array>
+	
+	<string-array name="sensitivity_array">
+        <item>Insensitive</item>
+        <item>Normal</item>
+        <item>Sensitive</item>
+        <item>Very sensitive</item>
+    </string-array>
+	
 	<string name="btn_about">What\'s this?</string>
 	<string name="btn_uninstall">Uninstall</string>
 	<string name="btn_greenlist">Green List</string>
@@ -30,4 +38,8 @@
 	<string name="btn_cancel">Cancel</string>
 	<string name="green_list_title">Apps that Lazilock shouldn\'t interupt:</string>
 	<string name="loading_green_list">Loading installed apps...</string>
+	<string name="weak">Weak</string>
+	<string name="strong">Strong</string>
+	<string name="btn_calibrate">Calibrate</string>
+	<string name = "calibrate_finish_message">Calibration done!</string>
 </resources> 
