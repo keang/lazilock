@@ -1,10 +1,9 @@
 package com.kakada.lazilock;
 
-import com.kakada.lazilock.R;
-
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -30,6 +29,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 	Button button_uninstall;
 	Button button_about;
 	Button button_greenlist;
+	ProgressDialog dialog;
 
 	/** Called when the activity is first created. */
 
@@ -76,6 +76,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		if(dialog!=null)dialog.dismiss();
 		Log.i(TAG, "oneResume");
 
 	}
@@ -146,7 +147,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 				//			getString(R.string.service_enabled_message),
 				//			Toast.LENGTH_SHORT).show();
 					startService(new Intent(this, LazilockService.class)); // is
-				Toast.makeText(this, getString(R.string.service_started_message), Toast.LENGTH_SHORT);						// already
+				Toast.makeText(this, getString(R.string.service_started_message), Toast.LENGTH_SHORT);// already
 																			// admin!
 				}
 			} else { // toggle disabled, stop service now AND remove admin
@@ -167,8 +168,12 @@ public class LazilockActivity extends Activity implements OnClickListener {
 		
 		//greenlist button
 		case R.id.btn_greenlist:
-			Toast.makeText(this, getString(R.string.loading_green_list), Toast.LENGTH_SHORT).show();
+			dialog = ProgressDialog.show(this, "", 
+                    "Loading. Please wait...", true);
+			try{
 			startActivity(new Intent(this, GreenListActivity.class));
+			}catch(Exception s){}
+
 			break;
 			
 			

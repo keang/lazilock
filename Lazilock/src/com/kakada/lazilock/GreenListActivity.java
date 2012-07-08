@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Typeface;
@@ -44,8 +45,10 @@ public class GreenListActivity extends Activity implements OnClickListener{
 			mCheckBox.setText(installedPackages.get(i).appname);
 			//set icon:
 			Drawable icon = (installedPackages.get(i).icon);
-			icon.setBounds(0,0,60,60);
-			mCheckBox.setCompoundDrawables(icon, null, null, null);
+			if(icon!=null){
+				icon.setBounds(0,0,60,60);
+				mCheckBox.setCompoundDrawables(icon, null, null, null);
+			}
 			
 			Log.d("populating", Boolean.toString(preferences.getBoolean(installedPackages.get(i).appname, false)));
 			
@@ -69,8 +72,6 @@ public class GreenListActivity extends Activity implements OnClickListener{
 		Button button_cancel= (Button) findViewById(R.id.cancel);
 		button_cancel.setOnClickListener(this);
 		button_cancel.setTypeface(robo_font);
-		
-
 		
 	}
 
@@ -121,7 +122,8 @@ public class GreenListActivity extends Activity implements OnClickListener{
 	        PInfo newInfo = new PInfo();
 	        newInfo.appname = p.loadLabel(getPackageManager()).toString();
 	        newInfo.pname = p.packageName;
-	        newInfo.icon = p.loadIcon(getPackageManager());
+	        if(p.loadIcon(getPackageManager())!=null)
+	        	newInfo.icon = p.loadIcon(getPackageManager());
 	        res.add(newInfo);
 	    }
 	    
