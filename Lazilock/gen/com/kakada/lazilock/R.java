@@ -93,6 +93,7 @@ public final class R {
     }
     public static final class xml {
         public static final int lazilock_device_admin=0x7f040000;
-        public static final int widget_provider=0x7f040001;
+        public static final int shakelock_device_admin=0x7f040001;
+        public static final int widget_provider=0x7f040002;
     }
 }
