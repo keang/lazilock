@@ -1,4 +1,6 @@
-package com.kakada.lazilock;
+package com.kakada.shakelock;
+
+import com.kakada.shakelock.R;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -29,13 +31,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-public class LazilockActivity extends Activity implements OnClickListener {
+public class ShakelockActivity extends Activity implements OnClickListener {
 
 	private static final int REQUEST_ENABLE = 1;
-	private static final String TAG = LazilockActivity.class.getSimpleName();
+	private static final String TAG = ShakelockActivity.class.getSimpleName();
 	private static final String PREFS_NAME = 	"MyPrefsFile";
-	private static final float WEAK_VALUE = 4.0f;
-	private static final float STRONG_VALUE = 6.5f;;
+	private static final float WEAK_VALUE = 5.5f;
+	private static final float STRONG_VALUE = 8.5f;;
 	
 	ProgressDialog dialog;
 	DevicePolicyManager mDPM;
@@ -116,7 +118,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 		ActivityManager manager = (ActivityManager)getSystemService(ACTIVITY_SERVICE);
 		
 		for(RunningServiceInfo service: manager.getRunningServices(Integer.MAX_VALUE)){
-			if(LazilockService.class.getName().equals(service.service.getClassName())){
+			if(ShakelockService.class.getName().equals(service.service.getClassName())){
 				return true;
 			}
 		}
@@ -139,7 +141,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 				Toast.makeText(this,
 						getString(R.string.service_enabled_message),
 						Toast.LENGTH_LONG).show();
-				Intent intent = new Intent(this, LazilockService.class);
+				Intent intent = new Intent(this, ShakelockService.class);
 				startService(intent);
 			} else {
 				Log.i(TAG, "Admin enable FAILED!");
@@ -168,7 +170,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 				editor.putFloat("MinForce", WEAK_VALUE);
 			}
 			editor.commit();
-			stopService(new Intent(this, LazilockService.class));
+			stopService(new Intent(this, ShakelockService.class));
 			toggleOn();
 
 		}
@@ -191,7 +193,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 				//		getString(R.string.service_disabled_message),
 				//		Toast.LENGTH_SHORT).show();
 				((RadioGroup)findViewById(R.id.radio_group)).clearCheck();
-				stopService(new Intent(this, LazilockService.class));
+				stopService(new Intent(this, ShakelockService.class));
 				Toast.makeText(this, getString(R.string.service_stoped_message), Toast.LENGTH_SHORT).show();
 				
 			}
@@ -217,7 +219,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 		//uninstall button
 		case R.id.btn_uninstall:
 			mDPM.removeActiveAdmin(mAdminName);
-			stopService(new Intent(this, LazilockService.class));
+			stopService(new Intent(this, ShakelockService.class));
 			ToggleButton status = (ToggleButton)findViewById(R.id.toggleButton);
 			status.setChecked(false);
 			Log.i(TAG,"Admin removed");
@@ -295,7 +297,7 @@ public class LazilockActivity extends Activity implements OnClickListener {
 		//	Toast.makeText(this,
 		//			getString(R.string.service_enabled_message),
 		//			Toast.LENGTH_SHORT).show();
-			Intent intent = new Intent(this, LazilockService.class);
+			Intent intent = new Intent(this, ShakelockService.class);
 			startService(intent); // is
 		Toast.makeText(this, getString(R.string.service_started_message), Toast.LENGTH_SHORT);						// already
 																		// admin!

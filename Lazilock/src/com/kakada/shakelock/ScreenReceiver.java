@@ -1,6 +1,8 @@
-package com.kakada.lazilock;
+package com.kakada.shakelock;
 
 
+
+import com.kakada.shakelock.R;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,7 +35,7 @@ public class ScreenReceiver extends BroadcastReceiver{
 		}
 
 		
-		Intent serviceIntent = new Intent(context, LazilockService.class);
+		Intent serviceIntent = new Intent(context, ShakelockService.class);
 		serviceIntent.putExtra("screen state", screenOn);
 		context.startService(serviceIntent);
 	}

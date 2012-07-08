@@ -1,4 +1,6 @@
-package com.kakada.lazilock;
+package com.kakada.shakelock;
+
+import com.kakada.shakelock.R;
 
 import android.app.Activity;
 import android.os.Bundle;

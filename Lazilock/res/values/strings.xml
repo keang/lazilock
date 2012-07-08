@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Lazilock</string>
-    <string name="title">Lazilock</string>
-    <string name="service_name">Lazilock Service</string>
-    <string name="LazilockDeviceAdminDescription">Allows FlipLock to turn off your screen when appropriate triggers occurs.</string>
-    <string name="introduction">You pocket it, we lock it.</string>
-    <string name="admin_permission_explanation">Give Lazilock access to your lock.</string>
-    <string name="service_enabled_message">Granted permission to Lazilock</string>
-    <string name="service_started_message">You have turned Lazilock on</string>
-    <string name="service_stoped_message">You have turned Lazilock off</string>
+    <string name="app_name">Shakelock</string>
+    <string name="title">Shakelock</string>
+    <string name="service_name">Shakelock Service</string>
+    <string name="shakelockDeviceAdminDescription">Allows Shakelock to turn off your screen when appropriate triggers occurs.</string>
+    <string name="introduction">You shake it, we lock it.</string>
+    <string name="admin_permission_explanation">Give Shakelock access to your lock.</string>
+    <string name="service_enabled_message">Granted permission to Shakelock</string>
+    <string name="service_started_message">You have turned Shakelock on</string>
+    <string name="service_stoped_message">You have turned Shakelock off</string>
     <string name="uninstall_instructions">Device Admin disabled, you may now uninstall this app as per normal.</string>
   
 	<string name="device_unsupported_message">Your device is unsupported. Thanks for your interest though.</string>
 	<string name="about_text">
-	    Step 1. Turn Lazilock on.
-	    \n\nStep 2. Forget about the lock button.
-	    \n\nStep 3. Put phone in pocket.
-	    \n\nStep 4. Know that it\'s locked and smile =).
-	    \n\nStep 5. Show off to the next person you meet.</string>
+	    Step 1. Turn Shakelock on.
+	    \n\nStep 2. Shake your phone/tablet along an axis(any one)
+	    \n\nStep 3. Feel it locking and smile =).
+	    \n\nStep 4. Show off to the next person you meet.</string>
 	<string-array name="camera_process_names">
 		<item >com.sec.android.app.camera</item>
 		<item >com.instagram.android</item>
@@ -36,7 +35,7 @@
 	<string name="btn_greenlist">Green List</string>
 	<string name="btn_done">Done</string>
 	<string name="btn_cancel">Cancel</string>
-	<string name="green_list_title">Apps that Lazilock shouldn\'t interupt:</string>
+	<string name="green_list_title">Apps that Shakelock shouldn\'t interupt:</string>
 	<string name="loading_green_list">Loading installed apps...</string>
 	<string name="weak">Weak</string>
 	<string name="strong">Strong</string>

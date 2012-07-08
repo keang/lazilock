@@ -1,4 +1,4 @@
-package com.kakada.lazilock;
+package com.kakada.shakelock;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,8 +10,8 @@ import android.util.Log;
 
 
 public class ShakeEventListener implements SensorEventListener{
-	private static final int MAX_PAUSE_BETWEEN_DIRECTION_CHANGE=200;
-	private static final int MAX_TOTAL_DURATION_OF_CHANGE = 900;
+	private static final int MAX_PAUSE_BETWEEN_DIRECTION_CHANGE=150;
+	private static final int MAX_TOTAL_DURATION_OF_CHANGE = 800;
 	private static final String PREFS_NAME="MyPrefsFile";
 	
 	

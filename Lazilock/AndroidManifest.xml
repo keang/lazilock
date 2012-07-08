@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kakada.lazilock"
-    android:versionCode="5"
-    android:versionName="1.0.31" >
+    package="com.kakada.shakelock"
+    android:versionCode="0"
+    android:versionName="0.1" >
     
     <uses-permission android:name="android.permission.VIBRATE"/>
     
@@ -18,23 +18,23 @@
     	android:minSdkVersion="7" />
 
     <application
-        android:icon="@drawable/lazilock"
+        android:icon="@drawable/shakelock"
         android:label="@string/app_name" >
         
         <activity 
-            android:name="com.kakada.lazilock.GreenListActivity"
+            android:name="com.kakada.shakelock.GreenListActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
         <activity
-            android:name="com.kakada.lazilock.ScreenWakerActivity"
+            android:name="com.kakada.shakelock.ScreenWakerActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:windowIsTranslucent = "true"></activity>
         
         <activity
-            android:name="com.kakada.lazilock.AboutActivity"
+            android:name="com.kakada.shakelock.AboutActivity"
             android:theme="@android:style/Theme.Dialog"></activity>
             
         <activity
-            android:name="com.kakada.lazilock.LazilockActivity"
+            android:name="com.kakada.shakelock.ShakelockActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -44,20 +44,20 @@
             </intent-filter>
         </activity>
         
-        <service android:name="com.kakada.lazilock.LazilockService"/>
+        <service android:name="com.kakada.shakelock.ShakelockService"/>
         
         <receiver android:name=".AdminReceiver"
             android:label="@string/service_name"
-        	android:description="@string/LazilockDeviceAdminDescription"
+        	android:description="@string/shakelockDeviceAdminDescription"
         	android:permission="android.permission.BIND_DEVICE_ADMIN">
     		<meta-data android:name="android.app.device_admin"
-            	android:resource="@xml/lazilock_device_admin" />
+            	android:resource="@xml/shakelock_device_admin" />
     		<intent-filter>
         		<action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
     		</intent-filter>
 		</receiver>
 		
-        <receiver android:name=".LazilockAppWidget"
+        <receiver android:name="com.kakada.shakelock.LazilockAppWidget"
             android:label="@string/app_name" >
 		    <intent-filter>
 		        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

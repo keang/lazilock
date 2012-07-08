@@ -1,4 +1,4 @@
-package com.kakada.lazilock;
+package com.kakada.shakelock;
 
 import android.app.Activity;
 import android.content.Context;

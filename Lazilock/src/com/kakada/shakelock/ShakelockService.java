@@ -1,4 +1,4 @@
-package com.kakada.lazilock;
+package com.kakada.shakelock;
 
 
 import android.app.ActivityManager;
@@ -17,14 +17,14 @@ import android.os.Vibrator;
 import android.util.Log;
 
 
-public class LazilockService extends Service{
+public class ShakelockService extends Service{
 	private static final String PREFS_NAME="MyPrefsFile";
 	
-	private static final String TAG = LazilockService.class.getSimpleName();
+	private static final String TAG = ShakelockService.class.getSimpleName();
 
 	private double MINFORCE;
 
-	private static final int MINCOUNT = 2;
+	private static final int MINCOUNT = 1;
 	
 	ScreenReceiver screenReceiver;
 	ShakeEventListener mScreenOffShakeListener;
