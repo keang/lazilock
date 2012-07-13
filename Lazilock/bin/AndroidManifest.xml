@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kakada.lazilock"
-    android:versionCode="1"
-    android:versionName="0.2" >
-
+    android:versionCode="8"
+    android:versionName="1.1" >
+    
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    
+	<supports-screens
+    android:largeScreens="true"
+    android:normalScreens="true"
+    android:smallScreens="true"
+    android:anyDensity="true" />
+	
+	 <uses-feature android:name="android.hardware.sensor.proximity" />
+	
     <uses-sdk android:targetSdkVersion="10"
     	android:minSdkVersion="8" />
 
     <application
         android:icon="@drawable/lazilock"
         android:label="@string/app_name" >
-        <activity 
-            android:name="com.kakada.lazilock.LazilockActivity"
-            android:theme="@android:style/Theme.Dialog"/>
         
-            
+        <activity 
+            android:name="com.kakada.lazilock.GreenListActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"></activity>
+        <activity
+            android:name="com.kakada.lazilock.AboutActivity"
+            android:theme="@android:style/Theme.Dialog"></activity>
+        
         <activity
             android:name="com.kakada.lazilock.LazilockActivity"
             android:label="@string/app_name" 
@@ -38,6 +51,7 @@
         		<action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
     		</intent-filter>
 		</receiver>
+		
     </application>
 
 </manifest>
