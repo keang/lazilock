@@ -13,21 +13,19 @@
     <string name="uninstall_instructions">Device Admin disabled, you may now uninstall this app as per normal.</string>
   
 	<string name="device_unsupported_message">Your device is unsupported. Thanks for your interest though.</string>
-	<string name="about_text">
-	    If you are lazy, you might like this. 
-	    \n\nStep 1. Turn Lazilock on.
-	    \n\nStep 2. Forget about the lock button.
-	    \n\nStep 3. Put phone in pocket.
-	    \n\nStep 4. Know that it\'s locked and smile =).
-	    \n\nStep 5. Show off to the next person you meet.
-	    
-	    \n\nAlso checkout <a href= "https://play.google.com/store/apps/details?id=com.kakada.lazilock.pro">Lazilock Pro</a>. 
-	    \nI would appreciate your ratings/comments!=)
+	<string name="about_text">Step 1. Be lazy.
+	    \n\nStep 2. Put phone in pocket.
+	    \n\nStep 3. Know that it\'s locked and smile =)
+	    \n\nStep 4. Show off to the next person you meet.
+	    \n\nStep 5. checkout <a href= "https://play.google.com/store/apps/details?id=com.kakada.lazilock.pro">Lazilock Pro</a>, where there are cool features like <b><i>LaziMute</i></b> which mutes incoming calls.  
+	    \n\n\nI would appreciate your ratings/comments!=)
 	    \n\n *** Tell me if you have any creative ways to be lazy! ***</string>
 	<string-array name="camera_process_names">
 		<item >com.sec.android.app.camera</item>
 		<item >com.instagram.android</item>
 	</string-array>
+	<string name="pro_ads">Checkout <a href= "https://play.google.com/store/apps/details?id=com.kakada.lazilock.pro">Lazilock Pro</a>, where there are cool features like <b><i>LaziMute</i></b> which mutes incoming calls.</string>
+	
 	<string name="btn_about">READ THIS</string>
 	<string name="btn_uninstall">Uninstall</string>
 	<string name="btn_greenlist">Green List</string>

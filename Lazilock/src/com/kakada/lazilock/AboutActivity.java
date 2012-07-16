@@ -2,7 +2,6 @@ package com.kakada.lazilock;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +19,6 @@ public class AboutActivity extends Activity implements OnClickListener{
 		aboutText.setOnClickListener(this);
 
 		aboutText.setMovementMethod(LinkMovementMethod.getInstance());
-		
 	}
 
 	public void onClick(View arg0) {

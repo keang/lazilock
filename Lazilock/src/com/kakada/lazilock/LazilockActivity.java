@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -70,6 +71,11 @@ public class LazilockActivity extends Activity implements OnClickListener {
 		button_greenlist.setOnClickListener(this);
 		button_greenlist.setText(R.string.btn_greenlist);
 		button_greenlist.setTypeface(intro_font);
+		
+		TextView proAds = (TextView)findViewById(R.id.pro_ads);
+		proAds.setMovementMethod(LinkMovementMethod.getInstance());
+		proAds.setTypeface(intro_font);
+		
 	}
 
 	@Override

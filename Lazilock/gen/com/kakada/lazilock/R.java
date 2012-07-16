@@ -37,10 +37,11 @@ public final class R {
         public static final int green_list_scroll_view=0x7f080002;
         public static final int green_list_title=0x7f080001;
         public static final int intro=0x7f080007;
+        public static final int pro_ads=0x7f08000c;
         public static final int title=0x7f080006;
         public static final int toggleButton=0x7f080008;
-        public static final int transparent=0x7f08000c;
-        public static final int widget_icon=0x7f08000d;
+        public static final int transparent=0x7f08000d;
+        public static final int widget_icon=0x7f08000e;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -54,15 +55,16 @@ public final class R {
         public static final int about_text=0x7f05000b;
         public static final int admin_permission_explanation=0x7f050005;
         public static final int app_name=0x7f050000;
-        public static final int btn_about=0x7f05000c;
-        public static final int btn_cancel=0x7f050010;
-        public static final int btn_done=0x7f05000f;
-        public static final int btn_greenlist=0x7f05000e;
-        public static final int btn_uninstall=0x7f05000d;
+        public static final int btn_about=0x7f05000d;
+        public static final int btn_cancel=0x7f050011;
+        public static final int btn_done=0x7f050010;
+        public static final int btn_greenlist=0x7f05000f;
+        public static final int btn_uninstall=0x7f05000e;
         public static final int device_unsupported_message=0x7f05000a;
-        public static final int green_list_title=0x7f050011;
+        public static final int green_list_title=0x7f050012;
         public static final int introduction=0x7f050004;
-        public static final int loading_green_list=0x7f050012;
+        public static final int loading_green_list=0x7f050013;
+        public static final int pro_ads=0x7f05000c;
         public static final int service_enabled_message=0x7f050006;
         public static final int service_name=0x7f050002;
         public static final int service_started_message=0x7f050007;

@@ -32,8 +32,8 @@
     <ToggleButton
         android:id="@+id/toggleButton"
         style="@style/Widget.Button.Toggle"
-        android:layout_width="145dp"
-        android:layout_height="145dp"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
         android:layout_marginBottom="20dp"
         android:textOff=" "
         android:textOn=" " />
@@ -61,6 +61,13 @@
         android:textSize="18sp"
         android:textColor="#FFFFFF"
         android:background="@drawable/btn_default_holo_dark" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/pro_ads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pro_ads"
+        android:textSize="16sp"></TextView>
 
 </LinearLayout>
 </ScrollView>

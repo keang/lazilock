@@ -14,6 +14,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.os.Vibrator;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 
@@ -23,6 +24,7 @@ public class LazilockService extends Service implements SensorEventListener{
 	private static final String TAG = LazilockService.class.getSimpleName();
 	
 	ScreenReceiver screenReceiver;
+	TelephonyManager TM;
 
 
 	@Override
@@ -36,7 +38,7 @@ public class LazilockService extends Service implements SensorEventListener{
 		// TODO Auto-generated method stub
 		super.onCreate();
 		Log.d(TAG, "service started");
-		
+		TM = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
 		screenReceiver = new ScreenReceiver(){
 			
 			@Override
@@ -96,10 +98,12 @@ public class LazilockService extends Service implements SensorEventListener{
 
 	public void onSensorChanged(SensorEvent arg0) {
 		// TODO Auto-generated method stub
-		if(!greenListIsActive()&&arg0.values[0]==0){
-			((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200);
-			((DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE)).lockNow();		
-			//Log.d(TAG, "LOCK PHONE");
+		if(TM.getCallState()==TelephonyManager.CALL_STATE_IDLE){
+			if(!greenListIsActive()&&arg0.values[0]==0){
+				((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(100);
+				((DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE)).lockNow();		
+				//Log.d(TAG, "LOCK PHONE");
+			}
 		}
 	}
 
